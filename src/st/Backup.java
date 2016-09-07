@@ -9,12 +9,12 @@ package st;
  *
  * @author dinus
  */
-public class Member extends javax.swing.JInternalFrame {
+public class Backup extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form MemberAddEditDeleteSearch
+     * Creates new form Backup
      */
-    public Member() {
+    public Backup() {
         initComponents();
     }
 
@@ -27,7 +27,7 @@ public class Member extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setTitle("Member Form");
+        setTitle("Backup Form");
         setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setPreferredSize(new java.awt.Dimension(1366, 768));
