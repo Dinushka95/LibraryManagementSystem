@@ -20,6 +20,7 @@ public class MainWindow extends javax.swing.JFrame {
         static PreparedStatement pst =null;
         public ResultSet rs =null;
         
+        
     public MainWindow() {
         initComponents();
       setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
@@ -27,8 +28,7 @@ public class MainWindow extends javax.swing.JFrame {
         Connection con=null;
         con=DB_Connect.connect();
         
-
-         
+      
     }
 
     @SuppressWarnings("unchecked")
@@ -171,7 +171,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu8MouseClicked
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
- 
+
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
@@ -186,12 +186,10 @@ public class MainWindow extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jMenu1MouseClicked
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2MouseClicked
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        BorrowReturn  BorrowReturnO =new BorrowReturn();
+    
+    public  void loadDefaultForm()
+    {
+    BorrowReturn  BorrowReturnO =new BorrowReturn();
         BorrowReturnO.setVisible(true);
         jDesktopPane1.removeAll();
         jDesktopPane1.add(BorrowReturnO);
@@ -200,7 +198,14 @@ public class MainWindow extends javax.swing.JFrame {
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+    }
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
+       loadDefaultForm();
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -298,8 +303,10 @@ public class MainWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainWindow().setVisible(true);
+        
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
