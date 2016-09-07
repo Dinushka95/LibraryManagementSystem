@@ -27,7 +27,7 @@ public class MainWindow extends javax.swing.JFrame {
         // sholud be deleted after completing this to void error (con.close())
         Connection con=null;
         con=DB_Connect.connect();
-        System.out.println("fss");
+        
         
       
     }
