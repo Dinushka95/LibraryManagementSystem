@@ -301,7 +301,7 @@ public class Books extends javax.swing.JInternalFrame {
         });
         jPanel3.add(jTextFieldSSSBookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 90, -1));
 
-        jLabel1.setText("Book Id");
+        jLabel1.setText("Book ID");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel2.setText("Author");
@@ -547,6 +547,10 @@ public class Books extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+            
+    if(jTextFieldSSSAuthor.getText().equals("")&&jTextFieldSSSIsbnNo.getText().equals("")&&jTextFieldSSSTitle.getText().equals("")&&jTextFieldSSSBookId.getText().length() >= 1)
+    { 
+        
             //System.out.println("0000000000000000");
         try {
             //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
@@ -560,15 +564,14 @@ public class Books extends javax.swing.JInternalFrame {
 "     book.`b_bid` AS book_b_bid,\n" +
 "     book.`b_isbn` AS book_b_isbn,\n" +
 "     book.`b_title` AS book_b_title,\n" +
-"     book.`b_author` AS book_b_author,\n" +
-"     book.`b_edition` AS book_b_edition,\n" +
 "     book.`b_shelf` AS book_b_shelf,\n" +
 "     book.`b_row` AS book_b_row,\n" +
 "     book.`b_coloum` AS book_b_coloum,\n" +
-"     book.`b_datetime` AS book_b_datetime,\n" +
 "     book.`b_availability` AS book_b_availability\n" +
 "FROM\n" +
-"     `book` book";
+"     `book` book\n" +
+"WHERE\n" +
+"     b_bid = "+jTextFieldSSSBookId.getText();
             JRDesignQuery newQuery =new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);          
@@ -579,8 +582,122 @@ public class Books extends javax.swing.JInternalFrame {
         }
         catch(Exception e)
         {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    else if(jTextFieldSSSBookId.getText().equals("")&&jTextFieldSSSIsbnNo.getText().equals("")&&jTextFieldSSSTitle.getText().equals("")&&jTextFieldSSSAuthor.getText().length() >= 1)
+    { 
+        
+            //System.out.println("0000000000000000");
+        try {
+            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
+            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
+           // InputStream is = new FileInputStream(new File(path));
+           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
+            //String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
+           // System.out.println(is);
+            JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml");
+            String sql="SELECT\n" +
+"     book.`b_bid` AS book_b_bid,\n" +
+"     book.`b_isbn` AS book_b_isbn,\n" +
+"     book.`b_title` AS book_b_title,\n" +
+"     book.`b_shelf` AS book_b_shelf,\n" +
+"     book.`b_row` AS book_b_row,\n" +
+"     book.`b_coloum` AS book_b_coloum,\n" +
+"     book.`b_availability` AS book_b_availability\n" +
+"FROM\n" +
+"     `book` book\n" +
+"WHERE\n" +
+"     b_author = "+jTextFieldSSSAuthor.getText();
+            JRDesignQuery newQuery =new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);          
+            JasperReport jr =JasperCompileManager.compileReport(jd);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
+    }
+       else if(jTextFieldSSSAuthor.getText().equals("")&&jTextFieldSSSBookId.getText().equals("")&&jTextFieldSSSTitle.getText().equals("")&&jTextFieldSSSIsbnNo.getText().length() >= 1)
+    { 
+        
+            //System.out.println("0000000000000000");
+        try {
+            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
+            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
+           // InputStream is = new FileInputStream(new File(path));
+           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
+            //String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
+           // System.out.println(is);
+            JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml");
+            String sql="SELECT\n" +
+"     book.`b_bid` AS book_b_bid,\n" +
+"     book.`b_isbn` AS book_b_isbn,\n" +
+"     book.`b_title` AS book_b_title,\n" +
+"     book.`b_shelf` AS book_b_shelf,\n" +
+"     book.`b_row` AS book_b_row,\n" +
+"     book.`b_coloum` AS book_b_coloum,\n" +
+"     book.`b_availability` AS book_b_availability\n" +
+"FROM\n" +
+"     `book` book\n" +
+"WHERE\n" +
+"     b_isbn = "+jTextFieldSSSIsbnNo.getText();
+            JRDesignQuery newQuery =new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);          
+            JasperReport jr =JasperCompileManager.compileReport(jd);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
+    }
+       else if(jTextFieldSSSAuthor.getText().equals("")&&jTextFieldSSSIsbnNo.getText().equals("")&&jTextFieldSSSBookId.getText().equals("")&&jTextFieldSSSTitle.getText().length() >= 1)
+    { 
+        
+            //System.out.println("0000000000000000");
+        try {
+            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
+            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
+           // InputStream is = new FileInputStream(new File(path));
+           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
+            //String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
+           // System.out.println(is);
+            JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml");
+            String sql="SELECT\n" +
+"     book.`b_bid` AS book_b_bid,\n" +
+"     book.`b_isbn` AS book_b_isbn,\n" +
+"     book.`b_title` AS book_b_title,\n" +
+"     book.`b_shelf` AS book_b_shelf,\n" +
+"     book.`b_row` AS book_b_row,\n" +
+"     book.`b_coloum` AS book_b_coloum,\n" +
+"     book.`b_availability` AS book_b_availability\n" +
+"FROM\n" +
+"     `book` book\n" +
+"WHERE\n" +
+"     b_title = "+"'"+jTextFieldSSSTitle.getText()+"'";
+            JRDesignQuery newQuery =new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);          
+            JasperReport jr =JasperCompileManager.compileReport(jd);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
+    }
+    else 
+    {
+    JOptionPane.showMessageDialog(null, "Null Input OR Multiple fields Inputed", "ERROR: " + "Report Not Compatible", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
