@@ -1,15 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package st;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import static st.DB_Connect.con;
+import static st.MainWindow.pst;
 
 /**
  *
  * @author dinus
  */
 public class Member extends javax.swing.JInternalFrame {
+     public ResultSet rs =null;
+ String SearchQuery=null;   
 
     /**
      * Creates new form MemberAddEditDeleteSearch
@@ -27,26 +42,653 @@ public class Member extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jTextFieldDate = new javax.swing.JTextField();
+        jLabelDate = new javax.swing.JLabel();
+        jTextFieldName = new javax.swing.JTextField();
+        jLabelTitle = new javax.swing.JLabel();
+        jLabelIsbnNo = new javax.swing.JLabel();
+        jTextFieldPhone = new javax.swing.JTextField();
+        jTextFieldNIC = new javax.swing.JTextField();
+        jLabelEdition = new javax.swing.JLabel();
+        jTextFieldBatch = new javax.swing.JTextField();
+        jLabelShelfNo = new javax.swing.JLabel();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jLabelAuthor = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jTextFieldMemberId = new javax.swing.JTextField();
+        jButtonMemberAdd = new javax.swing.JButton();
+        jButtonMemberUpdate = new javax.swing.JButton();
+        jButtonMemberDelete = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jButtonMemberSearch = new javax.swing.JButton();
+        jTextFieldSSSMemberId = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldSSSNIC = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldSSSBatch = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldSSSName = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+
         setTitle("Member Form");
         setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setPreferredSize(new java.awt.Dimension(1366, 768));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
-        );
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Add/ Update /Delete Section"));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextFieldDate.setEditable(false);
+        jTextFieldDate.setText("Automatically filled");
+        jTextFieldDate.setToolTipText("");
+        jTextFieldDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDateActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextFieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 280, 165, -1));
+
+        jLabelDate.setText("Date");
+        jPanel2.add(jLabelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 280, 37, 20));
+
+        jTextFieldName.setToolTipText("");
+        jPanel2.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 80, 165, -1));
+
+        jLabelTitle.setText("NIC No");
+        jPanel2.add(jLabelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 120, 51, 20));
+
+        jLabelIsbnNo.setText("Name");
+        jPanel2.add(jLabelIsbnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 80, 51, 20));
+        jPanel2.add(jTextFieldPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 160, 165, -1));
+        jPanel2.add(jTextFieldNIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 120, 165, -1));
+
+        jLabelEdition.setText("Phone No");
+        jPanel2.add(jLabelEdition, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 160, 60, 20));
+        jPanel2.add(jTextFieldBatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 240, 165, -1));
+
+        jLabelShelfNo.setText("Batch");
+        jPanel2.add(jLabelShelfNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 240, 51, 20));
+        jPanel2.add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 200, 165, -1));
+
+        jLabelAuthor.setText("E-mail");
+        jPanel2.add(jLabelAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 200, 51, 20));
+
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 38, -1, -1));
+
+        jTextFieldMemberId.setEditable(false);
+        jTextFieldMemberId.setText("Automatically filled");
+        jPanel2.add(jTextFieldMemberId, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 40, 165, -1));
+
+        jButtonMemberAdd.setText("Add");
+        jButtonMemberAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMemberAddActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonMemberAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+
+        jButtonMemberUpdate.setText("Update");
+        jButtonMemberUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMemberUpdateActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonMemberUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
+
+        jButtonMemberDelete.setText("Delete");
+        jButtonMemberDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMemberDeleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonMemberDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+
+        jLabel6.setText("Member ID");
+        jLabel6.setToolTipText("");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 40, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 270, 540));
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Search & Report Section"));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButtonMemberSearch.setText("Search");
+        jButtonMemberSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMemberSearchActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButtonMemberSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 110, 60));
+
+        jTextFieldSSSMemberId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldSSSMemberIdKeyPressed(evt);
+            }
+        });
+        jPanel5.add(jTextFieldSSSMemberId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 90, -1));
+
+        jLabel1.setText("Member ID");
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jLabel2.setText("NIC No");
+        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jTextFieldSSSNIC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldSSSNICKeyPressed(evt);
+            }
+        });
+        jPanel5.add(jTextFieldSSSNIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 90, -1));
+
+        jLabel3.setText("Batch");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+
+        jTextFieldSSSBatch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldSSSBatchKeyPressed(evt);
+            }
+        });
+        jPanel5.add(jTextFieldSSSBatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 80, -1));
+
+        jLabel4.setText("Name");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
+
+        jTextFieldSSSName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldSSSNameKeyPressed(evt);
+            }
+        });
+        jPanel5.add(jTextFieldSSSName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 80, -1));
+
+        jButton3.setText("View All Member");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 110, 60));
+
+        jButton4.setText("Generate Report");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 120, 60));
+
+        jButton1.setText("All Members Report");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 130, 60));
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 830, 100));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 840, 320));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 903, 540));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel5.setText("Member Form");
+        jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        public void addTable()
+    {
+    String x="INSERT INTO `member`( `m_name`, `m_nic`, `m_phone`, `m_email`, `m_batch`) VALUES ('"+jTextFieldName.getText()+"','"+jTextFieldNIC.getText()+"',"+jTextFieldPhone.getText()+",'"+jTextFieldEmail.getText()+"','"+jTextFieldBatch.getText()+"')";
+        System.out.println(x);
+        try {
+            pst =con.prepareStatement(x);
+            pst.execute();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        public void SearchTextBoxClear()
+    {
+    jTextFieldSSSMemberId.setText("");
+    jTextFieldSSSNIC.setText("");
+    jTextFieldSSSBatch.setText("");
+    jTextFieldSSSName.setText("");
+    }
+        
+                public void TextBoxClear()
+    {
+   
+        jTextFieldMemberId.setText("");
+        jTextFieldName.setText("");
+        jTextFieldNIC.setText("");
+        jTextFieldPhone.setText("");
+        jTextFieldEmail.setText("");
+        jTextFieldBatch.setText("");
+        jTextFieldDate.setText("");
+
+    }
+                
+    public void ChangeBookTableHeader()
+    {       jTable1.getColumnModel().getColumn(0).setHeaderValue("Member ID");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Name");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("NIC No");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Phone No");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("E-Mail");
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("Batch");
+            jTable1.getColumnModel().getColumn(6).setHeaderValue("Date");
+
+    }
+    
+    public boolean  MutipleSelectError ()
+    {
+      if((jTextFieldSSSNIC.getText().trim().isEmpty()&&jTextFieldSSSBatch.getText().trim().isEmpty()&&jTextFieldSSSName.getText().trim().isEmpty())
+         ||(jTextFieldSSSMemberId.getText().trim().isEmpty()&&jTextFieldSSSBatch.getText().trim().isEmpty()&&jTextFieldSSSName.getText().trim().isEmpty())
+         ||(jTextFieldSSSMemberId.getText().trim().isEmpty()&&jTextFieldSSSNIC.getText().trim().isEmpty()&&jTextFieldSSSName.getText().trim().isEmpty())
+         ||(jTextFieldSSSMemberId.getText().trim().isEmpty()&&jTextFieldSSSNIC.getText().trim().isEmpty()&&jTextFieldSSSBatch.getText().trim().isEmpty())
+         ){
+       
+       return false;
+      }
+      JOptionPane.showMessageDialog(null, "Only One  Field Can Be Search At Once", "ERROR: " + "Search Not Compatible", JOptionPane.ERROR_MESSAGE);
+      SearchTextBoxClear();
+       return true;   
+    }
+    
+    
+    public void loadTable()
+    {
+     
+        if(jTextFieldSSSNIC.getText().trim().isEmpty()&&jTextFieldSSSBatch.getText().trim().isEmpty()&&jTextFieldSSSName.getText().trim().isEmpty())
+        {SearchQuery="SELECT * FROM `member` WHERE `m_mid` ="+jTextFieldSSSMemberId.getText();}
+        if (jTextFieldSSSMemberId.getText().trim().isEmpty()&&jTextFieldSSSBatch.getText().trim().isEmpty()&&jTextFieldSSSName.getText().trim().isEmpty())
+        {SearchQuery="SELECT * FROM `member` WHERE `m_nic` LIKE  '"+jTextFieldSSSNIC.getText()+"'";}
+        if (jTextFieldSSSMemberId.getText().trim().isEmpty()&&jTextFieldSSSNIC.getText().trim().isEmpty()&&jTextFieldSSSName.getText().trim().isEmpty())
+        {SearchQuery="SELECT * FROM `member` WHERE `m_batch` LIKE '"+jTextFieldSSSBatch.getText()+"'";}
+        if (jTextFieldSSSMemberId.getText().trim().isEmpty()&&jTextFieldSSSNIC.getText().trim().isEmpty()&&jTextFieldSSSBatch.getText().trim().isEmpty())
+        {SearchQuery="SELECT * FROM `member` WHERE `m_name` LIKE '"+jTextFieldSSSName.getText()+"'";}
+    
+    try {
+            pst =con.prepareStatement(SearchQuery);
+            rs=pst.executeQuery();
+            if (!rs.isBeforeFirst() ) 
+            {    
+            JOptionPane.showMessageDialog(null, "No Matching Data Found", "ERROR: " + "Search Not Compatible", JOptionPane.ERROR_MESSAGE);
+            } 
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            SearchTextBoxClear();
+        } 
+    catch (SQLException ex) 
+        {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    ChangeBookTableHeader();
+    }
+        
+    private void jTextFieldDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDateActionPerformed
+
+    private void jButtonMemberAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemberAddActionPerformed
+addTable();
+        
+
+    }//GEN-LAST:event_jButtonMemberAddActionPerformed
+
+    private void jButtonMemberUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemberUpdateActionPerformed
+          
+        String r="UPDATE `member` SET `m_name`='"+jTextFieldName.getText()+"',`m_nic`='"+jTextFieldNIC.getText()+"',`m_phone`="+jTextFieldPhone.getText()+",`m_email`='"+jTextFieldEmail.getText()+"',`m_batch`='"+jTextFieldBatch.getText()+"' WHERE `m_mid`="+jTextFieldMemberId.getText()+"";
+        
+        System.out.println(r);
+     int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure to Update", "Confirmation",JOptionPane.WARNING_MESSAGE);
+     if(dialogResult == 0) {
+          try {
+            pst =con.prepareStatement(r);
+            pst.execute();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     finally
+     {
+
+     String z="SELECT * FROM `member` WHERE `m_mid` ="+jTextFieldMemberId.getText();
+     TextBoxClear();  
+     jTextFieldMemberId.setText("Automatically filled");
+     jTextFieldDate.setText("Automatically filled");
+     try {
+         pst =con.prepareStatement(z);
+         rs=pst.executeQuery();
+         jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+         ChangeBookTableHeader();
+      } catch (SQLException ex) {
+        Logger.getLogger(Books.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+     }
+     } 
+  
+       
+    }//GEN-LAST:event_jButtonMemberUpdateActionPerformed
+
+    private void jButtonMemberDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemberDeleteActionPerformed
+           String DelB="DELETE FROM `member` WHERE `m_mid`="+jTextFieldMemberId.getText();
+     
+     int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure to delete", "Confirmation",JOptionPane.WARNING_MESSAGE);
+     if(dialogResult == 0) {
+          try {
+            pst =con.prepareStatement(DelB);
+            pst.execute();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     finally
+     {
+     TextBoxClear();
+     jTextFieldMemberId.setText("Automatically filled");
+     jTextFieldDate.setText("Automatically filled");
+     String z="SELECT * FROM `member` WHERE `m_mid` =2";
+     try {
+         pst =con.prepareStatement(z);
+         rs=pst.executeQuery();
+         jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+         ChangeBookTableHeader();
+      } catch (SQLException ex) {
+        Logger.getLogger(Books.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+     }
+     } 
+     
+    }//GEN-LAST:event_jButtonMemberDeleteActionPerformed
+
+    private void jButtonMemberSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemberSearchActionPerformed
+      
+      if (MutipleSelectError()==false)
+      {
+      loadTable();
+     
+      }
+     
+     
+    }//GEN-LAST:event_jButtonMemberSearchActionPerformed
+
+    private void jTextFieldSSSMemberIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSSSMemberIdKeyPressed
+
+    }//GEN-LAST:event_jTextFieldSSSMemberIdKeyPressed
+
+    private void jTextFieldSSSNICKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSSSNICKeyPressed
+
+    }//GEN-LAST:event_jTextFieldSSSNICKeyPressed
+
+    private void jTextFieldSSSBatchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSSSBatchKeyPressed
+
+    }//GEN-LAST:event_jTextFieldSSSBatchKeyPressed
+
+    private void jTextFieldSSSNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSSSNameKeyPressed
+
+    }//GEN-LAST:event_jTextFieldSSSNameKeyPressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+  String SearchAllQuery="SELECT * FROM `member` ";
+
+        try {
+            pst =con.prepareStatement(SearchAllQuery);
+            rs=pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            SearchTextBoxClear();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ChangeBookTableHeader();
+       
+                 
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+            if(jTextFieldSSSBatch.getText().equals("")&&jTextFieldSSSNIC.getText().equals("")&&jTextFieldSSSName.getText().equals("")&&jTextFieldSSSMemberId.getText().length() >= 1)
+    { 
+        
+       
+        try {
+            
+            JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportMemberAll.jrxml");
+            String sql="SELECT\n" +
+"     member.`m_name` AS member_m_name,\n" +
+"     member.`m_nic` AS member_m_nic,\n" +
+"     member.`m_phone` AS member_m_phone,\n" +
+"     member.`m_email` AS member_m_email,\n" +
+"     member.`m_batch` AS member_m_batch,\n" +
+"     member.`m_datetime` AS member_m_datetime,\n" +
+"     member.`m_mid` AS member_m_mid\n" +
+"FROM\n" +
+"     `member` member\n" +
+"WHERE\n" +
+"     member.`m_mid` ="+jTextFieldSSSMemberId.getText();
+            JRDesignQuery newQuery =new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);          
+            JasperReport jr =JasperCompileManager.compileReport(jd);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
+    }                                        
+    else if(jTextFieldSSSMemberId.getText().equals("")&&jTextFieldSSSNIC.getText().equals("")&&jTextFieldSSSName.getText().equals("")&&jTextFieldSSSBatch.getText().length() >= 1)
+    { 
+        
+            
+        try {
+            
+            JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportMemberAll.jrxml");
+            String sql="SELECT\n" +
+"     member.`m_name` AS member_m_name,\n" +
+"     member.`m_nic` AS member_m_nic,\n" +
+"     member.`m_phone` AS member_m_phone,\n" +
+"     member.`m_email` AS member_m_email,\n" +
+"     member.`m_batch` AS member_m_batch,\n" +
+"     member.`m_datetime` AS member_m_datetime,\n" +
+"     member.`m_mid` AS member_m_mid\n" +
+"FROM\n" +
+"     `member` member\n" +
+"WHERE\n" +
+"     member.`m_batch` ='"+jTextFieldSSSBatch.getText()+"'";
+            JRDesignQuery newQuery =new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);          
+            JasperReport jr =JasperCompileManager.compileReport(jd);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
+    }
+       else if(jTextFieldSSSMemberId.getText().equals("")&&jTextFieldSSSBatch.getText().equals("")&&jTextFieldSSSName.getText().equals("")&&jTextFieldSSSNIC.getText().length() >= 1)
+    { 
+        
+            //System.out.println("0000000000000000");
+        try {
+            
+            JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportMemberAll.jrxml");
+            String sql="SELECT\n" +
+"     member.`m_name` AS member_m_name,\n" +
+"     member.`m_nic` AS member_m_nic,\n" +
+"     member.`m_phone` AS member_m_phone,\n" +
+"     member.`m_email` AS member_m_email,\n" +
+"     member.`m_batch` AS member_m_batch,\n" +
+"     member.`m_datetime` AS member_m_datetime,\n" +
+"     member.`m_mid` AS member_m_mid\n" +
+"FROM\n" +
+"     `member` member\n" +
+"WHERE\n" +
+"     member.`m_nic` ="+jTextFieldSSSNIC.getText();
+            JRDesignQuery newQuery =new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);          
+            JasperReport jr =JasperCompileManager.compileReport(jd);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
+    }
+       else if(jTextFieldSSSMemberId.getText().equals("")&&jTextFieldSSSBatch.getText().equals("")&&jTextFieldSSSNIC.getText().equals("")&&jTextFieldSSSName.getText().length() >= 1)
+    { 
+        
+            //System.out.println("0000000000000000");
+        try {
+            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
+            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
+           // InputStream is = new FileInputStream(new File(path));
+           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
+            //String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
+           // System.out.println(is);
+            JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportMemberAll.jrxml");
+            String sql="SELECT\n" +
+"     member.`m_name` AS member_m_name,\n" +
+"     member.`m_nic` AS member_m_nic,\n" +
+"     member.`m_phone` AS member_m_phone,\n" +
+"     member.`m_email` AS member_m_email,\n" +
+"     member.`m_batch` AS member_m_batch,\n" +
+"     member.`m_datetime` AS member_m_datetime,\n" +
+"     member.`m_mid` AS member_m_mid\n" +
+"FROM\n" +
+"     `member` member\n" +
+"WHERE\n" +
+"     member.`m_name` ="+"'"+jTextFieldSSSName.getText()+"'";
+            JRDesignQuery newQuery =new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);          
+            JasperReport jr =JasperCompileManager.compileReport(jd);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);}
+        SearchTextBoxClear();
+    }
+    else 
+    {
+    JOptionPane.showMessageDialog(null, "Null Input OR Multiple fields Inputed", "ERROR: " + "Report Not Compatible", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         //System.out.println("0000000000000000");
+        try {
+            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
+            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
+           // InputStream is = new FileInputStream(new File(path));
+           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
+            String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportMemberAll.jrxml";
+           // System.out.println(is);
+            JasperReport jr =JasperCompileManager.compileReport(is);
+            JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+           // System.out.println("11111111111");
+        }
+        catch(Exception e)
+        {System.out.println("222222222222222222"+e);} 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int r=jTable1.getSelectedRow();
+     
+        jTextFieldMemberId.setText(jTable1.getValueAt(r, 0).toString());
+        jTextFieldName.setText(jTable1.getValueAt(r, 1).toString());
+        jTextFieldNIC.setText(jTable1.getValueAt(r, 2).toString());
+        jTextFieldPhone.setText(jTable1.getValueAt(r, 3).toString());
+        jTextFieldEmail.setText(jTable1.getValueAt(r, 4).toString());
+        jTextFieldBatch.setText(jTable1.getValueAt(r, 5).toString());
+        jTextFieldDate.setText(jTable1.getValueAt(r, 6).toString());
+       
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonMemberAdd;
+    private javax.swing.JButton jButtonMemberDelete;
+    private javax.swing.JButton jButtonMemberSearch;
+    private javax.swing.JButton jButtonMemberUpdate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelAuthor;
+    private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelEdition;
+    private javax.swing.JLabel jLabelIsbnNo;
+    private javax.swing.JLabel jLabelShelfNo;
+    private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldBatch;
+    private javax.swing.JTextField jTextFieldDate;
+    private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldMemberId;
+    private javax.swing.JTextField jTextFieldNIC;
+    private javax.swing.JTextField jTextFieldName;
+    private javax.swing.JTextField jTextFieldPhone;
+    private javax.swing.JTextField jTextFieldSSSBatch;
+    private javax.swing.JTextField jTextFieldSSSMemberId;
+    private javax.swing.JTextField jTextFieldSSSNIC;
+    private javax.swing.JTextField jTextFieldSSSName;
     // End of variables declaration//GEN-END:variables
 }

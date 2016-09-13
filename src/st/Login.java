@@ -92,7 +92,7 @@ public class Login extends javax.swing.JFrame {
                 
             try 
             {
-                Thread.sleep(3150);
+                Thread.sleep(3100);
             }
             catch(InterruptedException e)
             {
