@@ -492,7 +492,7 @@ public class Books extends javax.swing.JInternalFrame {
      TextBoxClear();
      jTextFieldBookId.setText("Automatically filled");
      jTextFieldDate.setText("Automatically filled");
-     String z="SELECT * FROM `book` WHERE `b_bid` =0";
+     String z="SELECT * FROM `book` WHERE `b_bid`="+jTextFieldBookId.getText();
      try {
          pst =con.prepareStatement(z);
          rs=pst.executeQuery();
@@ -529,18 +529,15 @@ public class Books extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //System.out.println("0000000000000000");
+        
         try {
-            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
-            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
-           // InputStream is = new FileInputStream(new File(path));
-           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
+           
             String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
-           // System.out.println(is);
+           
             JasperReport jr =JasperCompileManager.compileReport(is);
             JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
             JasperViewer.viewReport(jp);
-           // System.out.println("11111111111");
+           
         }
         catch(Exception e)
         {System.out.println("222222222222222222"+e);}
@@ -551,14 +548,9 @@ public class Books extends javax.swing.JInternalFrame {
     if(jTextFieldSSSAuthor.getText().equals("")&&jTextFieldSSSIsbnNo.getText().equals("")&&jTextFieldSSSTitle.getText().equals("")&&jTextFieldSSSBookId.getText().length() >= 1)
     { 
         
-            //System.out.println("0000000000000000");
+            
         try {
-            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
-            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
-           // InputStream is = new FileInputStream(new File(path));
-           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
-            //String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
-           // System.out.println(is);
+           
             JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml");
             String sql="SELECT\n" +
 "     book.`b_bid` AS book_b_bid,\n" +
@@ -625,12 +617,7 @@ public class Books extends javax.swing.JInternalFrame {
         
             //System.out.println("0000000000000000");
         try {
-            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
-            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
-           // InputStream is = new FileInputStream(new File(path));
-           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
-            //String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
-           // System.out.println(is);
+            
             JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml");
             String sql="SELECT\n" +
 "     book.`b_bid` AS book_b_bid,\n" +
@@ -650,7 +637,7 @@ public class Books extends javax.swing.JInternalFrame {
             JasperReport jr =JasperCompileManager.compileReport(jd);
             JasperPrint jp =JasperFillManager.fillReport(jr,null,con);
             JasperViewer.viewReport(jp);
-           // System.out.println("11111111111");
+          
         }
         catch(Exception e)
         {System.out.println("222222222222222222"+e);}
@@ -659,14 +646,9 @@ public class Books extends javax.swing.JInternalFrame {
        else if(jTextFieldSSSAuthor.getText().equals("")&&jTextFieldSSSIsbnNo.getText().equals("")&&jTextFieldSSSBookId.getText().equals("")&&jTextFieldSSSTitle.getText().length() >= 1)
     { 
         
-            //System.out.println("0000000000000000");
+           
         try {
-            //String report="‪C:/Users/dinus/Documents/NetBeansProjects/ST/src/st/test.jrxml";
-            //String path = "C:\\Users\\dinus\\Desktop\\test.jrxml";
-           // InputStream is = new FileInputStream(new File(path));
-           // InputStream is=this.getClass().getResourceAsStream("C:\\Users\\dinus\\Desktop\\test.jrxml");
-            //String is="C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml";
-           // System.out.println(is);
+            
             JasperDesign jd=JRXmlLoader.load("C:\\Users\\dinus\\Documents\\NetBeansProjects\\ST\\src\\st\\reportBookAll.jrxml");
             String sql="SELECT\n" +
 "     book.`b_bid` AS book_b_bid,\n" +
