@@ -1,4 +1,5 @@
 
+
 package st;
 
 import java.beans.PropertyVetoException;
@@ -19,6 +20,7 @@ public class MainWindow extends javax.swing.JFrame {
         static Connection con=null;
         static PreparedStatement pst =null;
         public ResultSet rs =null;
+        public static int UId=1;
         
         
     public MainWindow() {
