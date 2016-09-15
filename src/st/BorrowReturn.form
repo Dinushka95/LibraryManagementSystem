@@ -102,11 +102,12 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldMemberId">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Automatically filled"/>
+                <Property name="editable" type="boolean" value="false"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTextFieldMemberId.setEditable(false);"/>
-              </AuxValues>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMemberIdActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldMemberIdKeyReleased"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="85" y="40" width="165" height="-1"/>
@@ -115,6 +116,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldName">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Automatically filled"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Constraints>
@@ -124,6 +126,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNIC">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Automatically filled"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="85" y="120" width="165" height="-1"/>
@@ -142,9 +147,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldBookId">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Automatically filled"/>
-              </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldBookIdKeyReleased"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTextFieldBookId.setEditable(false);"/>
               </AuxValues>
@@ -166,6 +171,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldIsbnNo">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Automatically filled"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Constraints>
@@ -185,26 +191,12 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldTitle">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="360" y="120" width="165" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelAuthor">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Transaction ID"/>
+                <Property name="text" type="java.lang.String" value="Automatically filled"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="591" y="40" width="100" height="20"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldEmail">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="710" y="40" width="165" height="-1"/>
+                  <AbsoluteConstraints x="360" y="120" width="165" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -264,6 +256,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldRName">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Automatically filled"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Constraints>
@@ -273,9 +266,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldRMemberId">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Automatically filled"/>
-              </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldRMemberIdKeyReleased"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTextFieldMemberId.setEditable(false);"/>
               </AuxValues>
@@ -308,11 +301,15 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JTextField" name="jTextFieldRMemberId1">
+            <Component class="javax.swing.JTextField" name="jTextFieldRBookId">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="Automatically filled"/>
               </Properties>
               <AuxValues>
@@ -347,6 +344,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldRTitle">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Automatically filled"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Constraints>
@@ -367,31 +366,13 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldRIsbn">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Automatically filled"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="90" y="230" width="165" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelRTransationId">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Transaction ID"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="950" y="100" width="100" height="20"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldRTransationId">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldRTransationIdActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="955" y="70" width="80" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

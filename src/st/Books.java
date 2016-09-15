@@ -47,6 +47,10 @@ public class Books extends javax.swing.JInternalFrame {
     try {
             pst =con.prepareStatement(SearchQuery);
             rs=pst.executeQuery();
+            if (!rs.isBeforeFirst() ) 
+            {    
+            JOptionPane.showMessageDialog(null, "No Matching Data Found", "ERROR: " + "Search Not Compatible", JOptionPane.ERROR_MESSAGE);
+            }
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             SearchTextBoxClear();
         } 
@@ -95,17 +99,27 @@ public class Books extends javax.swing.JInternalFrame {
     
     public void addTable()
     {
+        boolean error=false;
     String x="INSERT INTO `book`(`b_isbn`, `b_title`, `b_author`, `b_edition`, `b_shelf`, `b_row`, `b_coloum`) "
                 + "VALUES ("+jTextFieldIsbnNo.getText()+",'"+jTextFieldTitle.getText()+"','"+jTextFieldAuthor.getText()+"','"+jTextFieldEdition.getText()+"',"+jTextFieldShelfNo.getText()+","+jTextFieldRowNo.getText()+","+jTextFieldColoumNo.getText()+")";
         try {
             pst =con.prepareStatement(x);
             pst.execute();
+        
         } 
         catch (SQLException ex) 
         {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, "Couldn't add the Record", "" + "Error", JOptionPane.ERROR_MESSAGE);
+             error=true;
         }
-    
+        
+        
+    TextBoxClear();
+    if(error==false)
+     JOptionPane.showMessageDialog(null, "Sucessfull Added ", "" + "", JOptionPane.OK_OPTION);
+    jTextFieldBookId.setText("Automatically filled");
+    jTextFieldDate.setText("Automatically filled");
     }
     
     public boolean  MutipleSelectError ()
@@ -222,6 +236,19 @@ public class Books extends javax.swing.JInternalFrame {
         jPanel2.add(jLabelColoumNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 321, -1, 20));
 
         jTextFieldIsbnNo.setToolTipText("");
+        jTextFieldIsbnNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIsbnNoActionPerformed(evt);
+            }
+        });
+        jTextFieldIsbnNo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldIsbnNoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldIsbnNoKeyTyped(evt);
+            }
+        });
         jPanel2.add(jTextFieldIsbnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 76, 165, -1));
 
         jLabelTitle.setText("Title");
@@ -229,7 +256,27 @@ public class Books extends javax.swing.JInternalFrame {
 
         jLabelIsbnNo.setText("ISBN No");
         jPanel2.add(jLabelIsbnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 76, 51, 20));
+
+        jTextFieldEdition.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldEditionKeyPressed(evt);
+            }
+        });
         jPanel2.add(jTextFieldEdition, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 165, 165, -1));
+
+        jTextFieldTitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTitleActionPerformed(evt);
+            }
+        });
+        jTextFieldTitle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldTitleKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldTitleKeyTyped(evt);
+            }
+        });
         jPanel2.add(jTextFieldTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 114, 165, -1));
 
         jLabelEdition.setText("Edition");
@@ -238,6 +285,12 @@ public class Books extends javax.swing.JInternalFrame {
 
         jLabelShelfNo.setText("Shelf No");
         jPanel2.add(jLabelShelfNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 245, 51, 20));
+
+        jTextFieldAuthor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldAuthorKeyPressed(evt);
+            }
+        });
         jPanel2.add(jTextFieldAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 196, 165, -1));
 
         jLabelAuthor.setText("Author");
@@ -677,9 +730,59 @@ public class Books extends javax.swing.JInternalFrame {
     else 
     {
     JOptionPane.showMessageDialog(null, "Null Input OR Multiple fields Inputed", "ERROR: " + "Report Not Compatible", JOptionPane.ERROR_MESSAGE);
-    }
     
     }
+    
+    
+    }
+    private void jTextFieldIsbnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIsbnNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIsbnNoActionPerformed
+
+    private void jTextFieldIsbnNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIsbnNoKeyTyped
+
+    }//GEN-LAST:event_jTextFieldIsbnNoKeyTyped
+
+    private void jTextFieldTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTitleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTitleActionPerformed
+
+    private void jTextFieldTitleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTitleKeyTyped
+
+    }//GEN-LAST:event_jTextFieldTitleKeyTyped
+
+    private void jTextFieldEditionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEditionKeyPressed
+             
+    }//GEN-LAST:event_jTextFieldEditionKeyPressed
+
+    private void jTextFieldTitleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTitleKeyPressed
+        if(jTextFieldTitle.getText().length()>49)
+      {
+          JOptionPane.showMessageDialog(null, "characters count should be less than 50", "ERROR: " + "", JOptionPane.ERROR_MESSAGE);
+          jTextFieldTitle.setText("");
+         
+      }
+    }//GEN-LAST:event_jTextFieldTitleKeyPressed
+
+    private void jTextFieldIsbnNoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIsbnNoKeyPressed
+      if(jTextFieldIsbnNo.getText().length()>9)
+      {
+          JOptionPane.showMessageDialog(null, "characters count should be less than 11", "ERROR: " + "", JOptionPane.ERROR_MESSAGE);
+          jTextFieldIsbnNo.setText("");
+         
+      }
+    }//GEN-LAST:event_jTextFieldIsbnNoKeyPressed
+
+    private void jTextFieldAuthorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAuthorKeyPressed
+        if(jTextFieldAuthor.getText().length()>29)
+      {
+          JOptionPane.showMessageDialog(null, "characters count should be less than 30", "ERROR: " + "", JOptionPane.ERROR_MESSAGE);
+          jTextFieldAuthor.setText("");
+         
+      }
+    }//GEN-LAST:event_jTextFieldAuthorKeyPressed
+    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
