@@ -43,12 +43,9 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
@@ -76,21 +73,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        jMenuItem2.setText("Edit/Delete/Search");
+        jMenuItem2.setText("Edit/Delete/Search/Reports");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem2);
-
-        jMenuItem3.setText(" Reports");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
 
@@ -121,23 +110,11 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu5.setText("Settings");
-
-        jMenuItem1.setText("User Settings");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
             }
         });
-        jMenu5.add(jMenuItem1);
-
-        jMenuItem23.setText("Backup");
-        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem23ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem23);
-
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Help");
@@ -207,67 +184,6 @@ public class MainWindow extends javax.swing.JFrame {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2MouseClicked
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-
-       loadDefaultForm();
-        
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        BorrowReturnEditDeleteSearch  BorrowReturnEditDeleteSearchO =new  BorrowReturnEditDeleteSearch();
-         BorrowReturnEditDeleteSearchO.setVisible(true);
-         jDesktopPane1.removeAll();
-        jDesktopPane1.add(BorrowReturnEditDeleteSearchO);
-        try {
-                BorrowReturnEditDeleteSearchO.setMaximum(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        BorrowReturnReport BorrowReturnReportO =new BorrowReturnReport();
-        BorrowReturnReportO.setVisible(true);
-        jDesktopPane1.removeAll();
-        jDesktopPane1.add(BorrowReturnReportO);
-        try {
-                BorrowReturnReportO.setMaximum(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        UserOptions UserOptionsO = new UserOptions();
-        UserOptionsO.setVisible(true);
-        jDesktopPane1.removeAll();
-        jDesktopPane1.add(UserOptionsO); 
-        try {
-                UserOptionsO.setMaximum(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        Backup BackupO = new Backup();
-        BackupO.setVisible(true);
-        jDesktopPane1.removeAll();
-        jDesktopPane1.add(BackupO); 
-        try {
-                BackupO.setMaximum(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }//GEN-LAST:event_jMenuItem23ActionPerformed
-
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
        Help HelpO = new Help();
         HelpO.setVisible(true);
@@ -283,6 +199,42 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
        System.exit(0);
     }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    Settings SettingsO =new Settings();
+        SettingsO.setVisible(true);
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(SettingsO); 
+             try {
+                SettingsO.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        
+        
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        BorrowReturnEditDeleteSearch  BorrowReturnEditDeleteSearchO =new  BorrowReturnEditDeleteSearch();
+        BorrowReturnEditDeleteSearchO.setVisible(true);
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(BorrowReturnEditDeleteSearchO);
+        try {
+            BorrowReturnEditDeleteSearchO.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
+        loadDefaultForm();
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,8 +266,15 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+              try 
+            {
+                Thread.sleep(2700);
+            }
+            catch(InterruptedException e)
+            {}
+
                 new MainWindow().setVisible(true);
-        
             }
         });
         
@@ -330,10 +289,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem23;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }
