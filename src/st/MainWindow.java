@@ -29,9 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
         // sholud be deleted after completing this to void error (con.close())
         Connection con=null;
         con=DB_Connect.connect();
-        
-        
-      
+
     }
 
     @SuppressWarnings("unchecked")
@@ -267,17 +265,10 @@ public class MainWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-              try 
-            {
-                Thread.sleep(2700);
-            }
-            catch(InterruptedException e)
-            {}
-
-                new MainWindow().setVisible(true);
+       
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

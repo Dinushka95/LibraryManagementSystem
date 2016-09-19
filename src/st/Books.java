@@ -34,7 +34,6 @@ public class Books extends javax.swing.JInternalFrame {
  
     public void loadTable()
     {
-     
         if(jTextFieldSSSIsbnNo.getText().trim().isEmpty()&&jTextFieldSSSAuthor.getText().trim().isEmpty()&&jTextFieldSSSTitle.getText().trim().isEmpty())
         {SearchQuery="SELECT * FROM `book` WHERE `b_bid` ="+jTextFieldSSSBookId.getText();}
         if (jTextFieldSSSBookId.getText().trim().isEmpty()&&jTextFieldSSSAuthor.getText().trim().isEmpty()&&jTextFieldSSSTitle.getText().trim().isEmpty())
@@ -43,7 +42,7 @@ public class Books extends javax.swing.JInternalFrame {
         {SearchQuery="SELECT * FROM `book` WHERE `b_author` LIKE '"+jTextFieldSSSAuthor.getText()+"'";}
         if (jTextFieldSSSBookId.getText().trim().isEmpty()&&jTextFieldSSSIsbnNo.getText().trim().isEmpty()&&jTextFieldSSSAuthor.getText().trim().isEmpty())
         {SearchQuery="SELECT * FROM `book` WHERE `b_title` LIKE '"+jTextFieldSSSTitle.getText()+"'";}
-    
+
     try {
             pst =con.prepareStatement(SearchQuery);
             rs=pst.executeQuery();
@@ -65,8 +64,8 @@ public class Books extends javax.swing.JInternalFrame {
     {       jTable1.getColumnModel().getColumn(0).setHeaderValue("BOOK ID");
             jTable1.getColumnModel().getColumn(1).setHeaderValue("ISBN No");
             jTable1.getColumnModel().getColumn(2).setHeaderValue("Title");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Edition");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Author");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Author");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Edition");
             jTable1.getColumnModel().getColumn(5).setHeaderValue("Shelf No");
             jTable1.getColumnModel().getColumn(6).setHeaderValue("Row No");
             jTable1.getColumnModel().getColumn(7).setHeaderValue("Coloum No");
@@ -202,6 +201,7 @@ public class Books extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setTitle("Books  Form");
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -221,10 +221,10 @@ public class Books extends javax.swing.JInternalFrame {
                 jTextFieldDateActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 347, 165, -1));
+        jPanel2.add(jTextFieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 165, -1));
 
         jLabelDate.setText("Date");
-        jPanel2.add(jLabelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 347, 37, 20));
+        jPanel2.add(jLabelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 37, 20));
         jPanel2.add(jTextFieldRowNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 283, 165, -1));
 
         jLabelRowNo.setText("Row No");
@@ -331,7 +331,7 @@ public class Books extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButtonBookDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, 570));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 270, 510));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Search & Report Section"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -358,7 +358,7 @@ public class Books extends javax.swing.JInternalFrame {
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel2.setText("Author");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jTextFieldSSSAuthor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -433,7 +433,12 @@ public class Books extends javax.swing.JInternalFrame {
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 840, 320));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 903, 570));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 903, 510));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel5.setText("Book Form");
+        jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -480,8 +485,8 @@ public class Books extends javax.swing.JInternalFrame {
         jTextFieldBookId.setText(jTable1.getValueAt(r, 0).toString());
         jTextFieldIsbnNo.setText(jTable1.getValueAt(r, 1).toString());
         jTextFieldTitle.setText(jTable1.getValueAt(r, 2).toString());
-        jTextFieldEdition.setText(jTable1.getValueAt(r, 3).toString());
-        jTextFieldAuthor.setText(jTable1.getValueAt(r, 4).toString());
+        jTextFieldEdition.setText(jTable1.getValueAt(r, 4).toString());
+        jTextFieldAuthor.setText(jTable1.getValueAt(r, 3).toString());
         jTextFieldShelfNo.setText(jTable1.getValueAt(r, 5).toString());
         jTextFieldRowNo.setText(jTable1.getValueAt(r, 6).toString());
         jTextFieldColoumNo.setText(jTable1.getValueAt(r, 7).toString());
@@ -491,12 +496,12 @@ public class Books extends javax.swing.JInternalFrame {
 
     private void jButtonBookUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBookUpdateActionPerformed
            
-        String r="UPDATE `book`SET`b_isbn`="+jTextFieldIsbnNo.getText()+",`b_title`="+jTextFieldTitle.getText()+
-                ",`b_author`="+jTextFieldAuthor.getText()+",`b_edition`="+jTextFieldEdition.getText()+
+        String r="UPDATE `book`SET`b_isbn`="+jTextFieldIsbnNo.getText()+",`b_title`='"+jTextFieldTitle.getText()+
+                "',`b_author`='"+jTextFieldAuthor.getText()+"',`b_edition`="+jTextFieldEdition.getText()+
                 ",`b_shelf`="+jTextFieldShelfNo.getText()+",`b_row`="+jTextFieldRowNo.getText()+
                 ",`b_coloum`="+jTextFieldColoumNo.getText()+" WHERE `b_bid`="+jTextFieldBookId.getText();
         
-        
+        System.out.println(r);
      int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure to Update", "Confirmation",JOptionPane.WARNING_MESSAGE);
      if(dialogResult == 0) {
           try {
@@ -796,6 +801,7 @@ public class Books extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelAuthor;
     private javax.swing.JLabel jLabelBookId;
     private javax.swing.JLabel jLabelColoumNo;

@@ -72,6 +72,7 @@ public ResultSet rs =null;
         jLabelRIsbm = new javax.swing.JLabel();
         jTextFieldRIsbn = new javax.swing.JTextField();
         jButtonRReturn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setTitle("Borrow / Return Form");
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -230,6 +231,11 @@ public ResultSet rs =null;
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 1140, 540));
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel5.setText("Borrow / Return Form");
+        jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -294,7 +300,7 @@ public ResultSet rs =null;
             
             pst =con.prepareStatement(y1);
             pst.execute();
-           JOptionPane.showMessageDialog(null, "Return Sucessfull", "" + "", JOptionPane.OK_OPTION); 
+          
             
         } 
     catch (SQLException ex) 
@@ -308,13 +314,13 @@ public ResultSet rs =null;
       System.out.println(z1);
       
     if(error1==false)
-     JOptionPane.showMessageDialog(null, "Borrowed Sucessfull ", "" + "", JOptionPane.OK_OPTION);
-    jTextFieldMemberId.setText("");
-    jTextFieldName.setText("");
-    jTextFieldNIC.setText("");
-    jTextFieldBookId.setText("");
-    jTextFieldTitle.setText("");
-    jTextFieldIsbnNo.setText("");
+    JOptionPane.showMessageDialog(null, "Return Sucessfull", "" + "", JOptionPane.OK_OPTION); 
+    jTextFieldRMemberId.setText("");
+    jTextFieldRName.setText("Automatically filled");
+    jTextFieldRBookId.setText("Automatically filled");
+    jTextFieldRTitle.setText("Automatically filled");
+    jTextFieldRIsbn.setText("Automatically filled");
+
     }//GEN-LAST:event_jButtonRReturnActionPerformed
 
     private void jTextFieldMemberIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMemberIdKeyReleased
@@ -356,8 +362,7 @@ public ResultSet rs =null;
     private void jTextFieldBookIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBookIdKeyReleased
 
        String  SearchQuery="SELECT * FROM `book` WHERE `b_bid` ="+jTextFieldBookId.getText()+" AND `b_availability` = true";
-
-    
+   
     try {
             pst =con.prepareStatement(SearchQuery);
             rs=pst.executeQuery();
@@ -366,13 +371,11 @@ public ResultSet rs =null;
               jTextFieldIsbnNo.setText(name);
               String nic = rs.getString("b_title");
               jTextFieldTitle.setText(nic);
-
             }
                         else
             {jTextFieldTitle.setText("No result");
             jTextFieldIsbnNo.setText("No result");
             }
-
         } 
     catch (SQLException ex) 
         {
@@ -384,7 +387,7 @@ public ResultSet rs =null;
 
     private void jTextFieldRMemberIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRMemberIdKeyReleased
        
-       String  z="SELECT * FROM `transaction` WHERE `t_m_mid` ="+jTextFieldRMemberId.getText()+" AND `t_rdatetime` = 'NULL'";
+       String  z="SELECT * FROM `transaction` WHERE `t_m_mid` ="+jTextFieldRMemberId.getText()+" AND `t_rdatetime` = 'Not-Returned'";
        String  SearchRQuery="SELECT * FROM `member` WHERE `m_mid` ="+jTextFieldRMemberId.getText();
        System.out.println(z);
            ResultSet rs2;
@@ -400,7 +403,6 @@ public ResultSet rs =null;
             else
             {jTextFieldRName.setText("No result");
             }
-            
             try {
             pst =con.prepareStatement(z);
             rs2=pst.executeQuery();
@@ -422,7 +424,6 @@ public ResultSet rs =null;
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             jTextFieldRName.setText("Automatically filled");
         }
-    
     }//GEN-LAST:event_jTextFieldRMemberIdKeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -463,6 +464,7 @@ public ResultSet rs =null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBBorrow;
     private javax.swing.JButton jButtonRReturn;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelIsbnNo;
